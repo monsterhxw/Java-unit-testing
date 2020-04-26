@@ -1,10 +1,10 @@
 package hxw.test.springbootunittesting.service.impl;
 
-import static hxw.test.springbootunittesting.utils.UserAssert.assertThat;
-
-import hxw.test.springbootunittesting.entity.UserEntity;
-import hxw.test.springbootunittesting.repository.UserRepository;
+import hxw.test.springbootunittesting.domain.SaveUserPort;
+import hxw.test.springbootunittesting.domain.SendMailPort;
+import hxw.test.springbootunittesting.domain.User;
 import java.time.LocalDateTime;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,13 +15,15 @@ import org.mockito.stubbing.Answer;
 @ExtendWith(MockitoExtension.class)
 public class UserServiceImplUsingMockitoProgrammaticallyTest {
 
-    private UserRepository userRepository = Mockito.mock(UserRepository.class);
+    private SaveUserPort saveUserPort = Mockito.mock(SaveUserPort.class);
+
+    private SendMailPort sendMailPort = Mockito.mock(SendMailPort.class);
 
     private UserServiceImpl userService;
 
     @BeforeEach
     void initCase() {
-        userService = new UserServiceImpl(userRepository);
+        userService = new UserServiceImpl(saveUserPort, sendMailPort);
     }
 
     /**
@@ -29,12 +31,11 @@ public class UserServiceImplUsingMockitoProgrammaticallyTest {
      */
     @Test
     void savedUserHasRegistrationDateWithProgrammatically() {
-        UserEntity user = new UserEntity("huangxuewei", "huangxueweihxw@gmail.com");
+        User user = new User("huangxuewei", "huangxueweihxw@gmail.com");
         user.setRegistrationDate(LocalDateTime.now());
-        Mockito.when(userRepository.save(Mockito.any(UserEntity.class)))
-            .then((Answer<UserEntity>) invocation -> user);
-        UserEntity savedUser = userService.registerUser(user);
+        Mockito.when(saveUserPort.saveUser(Mockito.any(User.class))).then((Answer<Long>) a -> 42L);
+        Long userId = userService.registerUser(user, false);
 
-        assertThat(savedUser).hasRegistrationDate();
+        Assertions.assertThat(userId).isNotNull();
     }
 }

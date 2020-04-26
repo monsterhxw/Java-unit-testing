@@ -1,8 +1,10 @@
 package hxw.test.springbootunittesting.service.impl;
 
-import hxw.test.springbootunittesting.entity.UserEntity;
-import hxw.test.springbootunittesting.repository.UserRepository;
+import hxw.test.springbootunittesting.domain.SaveUserPort;
+import hxw.test.springbootunittesting.domain.SendMailPort;
+import hxw.test.springbootunittesting.domain.User;
 import hxw.test.springbootunittesting.service.UserService;
+import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +12,18 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
+    private final SaveUserPort saveUserPort;
 
-    public UserEntity registerUser(UserEntity user) {
-        return userRepository.save(user);
+    private final SendMailPort sendMailPort;
+
+    @Override
+    public Long registerUser(User user, boolean sendWelcomeMail) {
+        user.setRegistrationDate(LocalDateTime.now());
+
+        if (sendWelcomeMail) {
+            sendMailPort.sendMail("Welcome!", "Thanks for registering.");
+        }
+
+        return saveUserPort.saveUser(user);
     }
 }

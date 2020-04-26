@@ -1,4 +1,4 @@
-package hxw.test.springbootunittesting.entity;
+package hxw.test.springbootunittesting.persistence.entity;
 
 import java.time.LocalDateTime;
 import javax.persistence.Entity;

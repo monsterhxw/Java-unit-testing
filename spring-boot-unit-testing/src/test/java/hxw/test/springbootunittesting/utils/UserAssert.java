@@ -1,6 +1,6 @@
 package hxw.test.springbootunittesting.utils;
 
-import hxw.test.springbootunittesting.entity.UserEntity;
+import hxw.test.springbootunittesting.persistence.entity.UserEntity;
 import org.assertj.core.api.AbstractAssert;
 
 public class UserAssert extends AbstractAssert<UserAssert, UserEntity> {

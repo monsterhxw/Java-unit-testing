@@ -1,6 +1,6 @@
-package hxw.test.springbootunittesting.repository;
+package hxw.test.springbootunittesting.persistence.repository;
 
-import hxw.test.springbootunittesting.entity.UserEntity;
+import hxw.test.springbootunittesting.persistence.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
