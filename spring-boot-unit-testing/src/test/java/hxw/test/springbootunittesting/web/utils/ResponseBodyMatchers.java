@@ -1,4 +1,4 @@
-package hxw.test.springbootunittesting.utils;
+package hxw.test.springbootunittesting.web.utils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

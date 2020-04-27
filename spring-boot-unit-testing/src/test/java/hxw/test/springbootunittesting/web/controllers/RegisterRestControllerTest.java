@@ -1,6 +1,6 @@
 package hxw.test.springbootunittesting.web.controllers;
 
-import static hxw.test.springbootunittesting.utils.ResponseBodyMatchers.responseBody;
+import static hxw.test.springbootunittesting.web.utils.ResponseBodyMatchers.responseBody;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;

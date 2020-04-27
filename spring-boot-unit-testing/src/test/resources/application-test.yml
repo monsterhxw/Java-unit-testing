@@ -1,6 +1,4 @@
 spring:
-  main:
-    allow-bean-definition-overriding: true
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -8,9 +6,7 @@ spring:
     enabled: false
   liquibase:
     enabled: false
+  main:
+    allow-bean-definition-overriding: true
 
-logging:
-  level:
-    org:
-      hiernate:
-        SQL: DEBUG
+foo: bar

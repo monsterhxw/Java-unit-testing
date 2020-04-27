@@ -1,4 +1,4 @@
-package hxw.test.springbootunittesting.utils;
+package hxw.test.springbootunittesting.web.utils;
 
 import hxw.test.springbootunittesting.persistence.entity.UserEntity;
 import org.assertj.core.api.AbstractAssert;
